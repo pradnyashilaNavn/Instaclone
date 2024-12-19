@@ -1,0 +1,6 @@
+npm init -Y  //create package.json
+npm i express mongoose nodemon jsonwebtoken bcryptjs cookie-parser cors //install all packages
+npm run dev // http://localhost:8000/
+
+Username: pradnyajadhav995
+Password: SSfe1AVPorWBHche
