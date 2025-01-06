@@ -4,3 +4,16 @@ npm run dev // http://localhost:8000/
 
 Username: pradnyajadhav995
 Password: SSfe1AVPorWBHche
+-------------------------------------
+cd backend
+npm i datauri
+npm i cloudinary
+npm i multer
+
+
+--------------------------------------------------
+pending Task
+- swagger docs 
+- git Add a README
+
+
