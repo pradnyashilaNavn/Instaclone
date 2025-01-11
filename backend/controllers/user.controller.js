@@ -90,7 +90,7 @@ export const login = async (req, res) => {
 };
 export const logout = async (_,res) => {
     try{
-        return res.cookie("token", "", {maxAge:0}).json({
+        return res.cookie("token", "", {maxAge:0}).json({ //server sets the token cookie with maxAge: 0, effectively deleting it.
             message:'Logged out successfully.',
             success:true
         });
