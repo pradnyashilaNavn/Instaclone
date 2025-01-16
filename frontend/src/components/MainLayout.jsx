@@ -4,10 +4,13 @@ import LeftSidebar from "./LeftSidebar";
 
 const MainLayout = () => {
   return (
-    <div>
+    <div className="flex h-screen">
       <LeftSidebar />
-      <div>
-        <Outlet />
+      <div className="flex flex-grow">
+        {/* Main Content with Feed and Right Sidebar */}
+        <div className="flex-grow my-8">
+          <Outlet />
+        </div>
       </div>
     </div>
   );
