@@ -53,3 +53,14 @@ npx shadcn@latest add sonner
 npm i axios
 npx shadcn@latest add avatar
 npx shadcn@latest add dialog
+% redux toolkit installation
+npm install @reduxjs/toolkit react-redux
+% In src/redux/store.js
+const store = configureStore({
+    reducer:{
+        auth:authSlice
+    },
+    devTools: window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() % add this code
+});
+% install redux persist
+npm i redux-persist
