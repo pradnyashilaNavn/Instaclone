@@ -5,8 +5,11 @@ import LeftSidebar from "./LeftSidebar";
 const MainLayout = () => {
   return (
     <div className="flex h-screen">
-      <LeftSidebar />
-      <div className="flex flex-grow">
+      {/* Left Sidebar */}
+      <div className="sticky top-0 h-screen">
+        <LeftSidebar />
+      </div>
+      <div className="flex flex-grow overflow-y-auto"> {/* to stick sidebar added overflow-y-auto */}
         {/* Main Content with Feed and Right Sidebar */}
         <div className="flex-grow my-8">
           <Outlet />

@@ -14,8 +14,8 @@ export const addNewPost = async (req, res) => {
         // image upload 
         const optimizedImageBuffer = await sharp(image.buffer)
         .resize({width:800, height:800, fit:'inside'}).toFormat('jpeg', {quality:80}).toBuffer();
-
-        const fileUri = `data:image/jpeg;base64, ${optimizedImageBuffer.toString('base64')}`;
+        // buffer to data uri
+        const fileUri = `data:image/jpeg;base64,${optimizedImageBuffer.toString('base64')}`;
         const cloudResponse = await cloudinary.uploader.upload(fileUri);
         const post = await Post.create({
            caption,
