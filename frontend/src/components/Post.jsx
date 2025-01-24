@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "sonner";
 import axios from "axios";
 import { setPosts, setSelectedPost } from "@/redux/postSlice";
+import { Badge } from "./ui/badge";
 
 const Post = ({ post }) => {
   const [text, setText] = useState("");
@@ -111,7 +112,10 @@ const Post = ({ post }) => {
             <AvatarImage src={post.author?.profilePicture} alt="post_image" />
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>
-          <h1>{post.author?.username}</h1>
+          <div className="flex items-center gap-3">
+            <h1>{post.author?.username}</h1>
+            {user?._id === post.author._id && <Badge variant="secondary">Author</Badge>} 
+          </div>
         </div>
         <Dialog>
           <DialogTrigger asChild>
@@ -176,9 +180,16 @@ const Post = ({ post }) => {
         <span className="">{post.author?.username} </span>
         {post.caption}
       </p>
-      <span onClick={() => setOpen(true)}>
-        View all {comment.length} comments
-      </span>
+      {comment.length > 0 && (
+        <span
+          onClick={() => {
+            dispatch(setSelectedPost(post));
+            setOpen(true);
+          }} className="cursor-pointer text-sm text-gray-400">
+          View all {comment.length} comments
+        </span>
+      )}
+
       <CommentDialog open={open} setOpen={setOpen} />
       <div className="flex items-center justify-center">
         <input
