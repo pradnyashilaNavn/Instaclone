@@ -3,6 +3,7 @@ import { User } from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 import cloudinary from "../utils/cloudinary.js";
 import getDataUri from "../utils/datauri.js";
+import { Post } from "../models/post.model.js";
 
 export const register = async (req, res) => {
     try {

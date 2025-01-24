@@ -7,6 +7,7 @@ import { readFileAsDataURL } from '@/lib/utils';
 import { Loader2 } from 'lucide-react';
 import axios from 'axios';
 import { toast } from 'sonner';
+import { useSelector } from 'react-redux';
 
 const CreatePost = ({open, setOpen}) => {
   const imageRef = useRef();
@@ -14,6 +15,7 @@ const CreatePost = ({open, setOpen}) => {
   const [caption, setCaption] = useState("");
   const [imagePreview, setImagePreview] = useState("");
   const [loading, setLoading] = useState(false);
+  const {user} = useSelector(store=>store.auth);
 
   const fileChangeHandler = async (e) => {
     const file = e.target.files?.[0];
@@ -54,11 +56,11 @@ const CreatePost = ({open, setOpen}) => {
           <DialogHeader className='text-center font-bold'>Create New Post</DialogHeader>
           <div className='flex gap-3 items-center'>
             <Avatar>
-              <AvatarImage src="" alt="" />
+              <AvatarImage src={user?.profilePicture} alt="" />
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
             <div>
-              <h1 className='font-semibold text-xs'>Username</h1>
+              <h1 className='font-semibold text-xs'>{user?.username}</h1>
               <span className='text-gray-600 text-xs'>Bio here...</span>
             </div>
           </div>

@@ -43,13 +43,13 @@ export const addNewPost = async (req, res) => {
 }
 export const getAllPosts = async (req, res) => {
     try{
-        const post = await Post.find().sort({createdAt:-1})
-        .populate({path:'author', select:'username, profilePicture'})
-        .populate({path:'comments', sort:({createdAt:-1}), populate:{path:'author', select:'username, profilePicture'}});
+        const posts = await Post.find().sort({createdAt:-1})
+        .populate({path:'author', select:'username profilePicture'})
+        .populate({path:'comments', sort:({createdAt:-1}), populate:{path:'author', select:'username profilePicture'}});
         return res.status(200).json({
             message:"All posts",
             success:true,
-            post
+            posts
         });
     }catch(error){
        console.log(error);        
@@ -115,18 +115,22 @@ export const disLikePost = async (req, res) => {
 }
 export const addComment = async (req, res) => {
     try{
-        const authorId = req.id;
         const postId = req.params.id;
-        const {content} = req.body;//comment content
+        const authorId = req.id;
+
+        const {text} = req.body;
+
         const post = await Post.findById(postId);
-        if(!content) return res.status(400).json({message:'Comment content required', success:false});
+
+        if(!text) return res.status(400).json({message:'text is required', success:false});
         const comment = await Comment.create({
-            content,
+            text,
             author:authorId,
             post:postId
-        }).populate({
+        })
+        await comment.populate({
             path:'author',
-            select:'username, profilePicture'
+            select:'username profilePicture'
         });
 
         post.comments.push(comment._id);
@@ -136,12 +140,12 @@ export const addComment = async (req, res) => {
     }catch(error){
         console.log(error);
     }
-}
+};
 // get commments of a post
 export const getCommentsOfPost = async (req, res) => {
     try{
         const postId = req.params.id;
-        const comments = await Comment.find({post:postId}).populate('author', 'username, profilePicture');
+        const comments = await Comment.find({post:postId}).populate('author', 'username profilePicture');
         if(!comments) return res.status(404).json({message:'No comments found', success:false});
         return res.status(200).json({message:'Comments', success:true, comments});
     }catch(error){
