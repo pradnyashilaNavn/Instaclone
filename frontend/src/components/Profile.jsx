@@ -89,19 +89,19 @@ const Profile = () => {
           </div>
 
           {/* Displayed Posts */}
-          <div className='grid grid-cols-3 gap-1'>
+          <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2'>
             {
               displayedPost?.length ? (
                 displayedPost.map((post) => (
-                  <div key={post?._id} className='relative group '>
-                    <img src={post.image} alt="post" className='my-2 w-full aspect-square object-cover'/>
-                    <div className='absolute inset-0 bg-black bg-opacity-30 opacity-0 group-hover:opacity-100 flex items-center justify-center text-white text-lg font-semibold'>
+                  <div key={post?._id} className='relative group'>
+                    <img src={post.image} alt="post" className='w-full aspect-square object-cover'/>
+                    <div className='absolute inset-0 bg-black bg-opacity-30 opacity-0 group-hover:opacity-100 flex items-center justify-center text-white text-sm sm:text-base font-medium'>
                       <div className='flex items-start text-white space-x-4'>
-                        <button className='flex items-center gap-2 hover:text-gray-300'>
+                        <button className='flex items-center gap-2 p-2 hover:text-gray-300'>
                           <Heart />
                           <span>{post?.likes.length}</span>
                         </button>
-                        <button className='flex items-center gap-2 hover:text-gray-300'>
+                        <button className='flex items-center gap-2 p-2 hover:text-gray-300'>
                           <MessageCircle />
                           <span>{post?.comments.length}</span>
                         </button>
@@ -113,7 +113,6 @@ const Profile = () => {
                 <p className='text-center text-gray-500'>No posts available</p>
               )
             }
-
           </div>
         </div>
       </div>
