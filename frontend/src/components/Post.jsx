@@ -104,6 +104,21 @@ const Post = ({ post }) => {
       toast.error(error.response.data.message);
     }
   };
+
+  const bookmarkHandler = async () => {
+    try {
+      const res = await axios.get(
+        `http://localhost:8000/api/v1/post/${post?._id}/bookmark`,
+        { withCredentials: true }
+      );
+      if (res.data.success) {
+        toast.success(res.data.message);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="my-8 w-full max-w-sm mx-auto">
       <div className="flex items-center justify-between">
@@ -114,7 +129,9 @@ const Post = ({ post }) => {
           </Avatar>
           <div className="flex items-center gap-3">
             <h1>{post.author?.username}</h1>
-            {user?._id === post.author._id && <Badge variant="secondary">Author</Badge>} 
+            {user?._id === post.author._id && (
+              <Badge variant="secondary">Author</Badge>
+            )}
           </div>
         </div>
         <Dialog>
@@ -123,12 +140,15 @@ const Post = ({ post }) => {
           </DialogTrigger>
           <DialogContent className="flex flex-col items-center text-sm text-center">
             {/* <Button variant='ghost' className='text-red-500 border border-red-500 hover:bg-red-50 py-2 px-4 rounded-lg transition duration-300 ease-in-out w-fit'>Unfollow</Button> */}
-            <Button
-              variant="ghost"
-              className="text-red-500  hover:bg-red-50 py-2 px-4 rounded-lg transition duration-300 ease-in-out w-fit"
-            >
-              Unfollow
-            </Button>
+            {post?.author?._id !== user?._id && (
+              <Button
+                variant="ghost"
+                className="text-red-500  hover:bg-red-50 py-2 px-4 rounded-lg transition duration-300 ease-in-out w-fit"
+              >
+                Unfollow
+              </Button>
+            )}
+
             <Button variant="ghost" className="cursor-pointer w-fit">
               Add to favorites
             </Button>
@@ -173,7 +193,10 @@ const Post = ({ post }) => {
           />
           <Send className="cursor-pointer hover:text-gray-600" />
         </div>
-        <Bookmark className="cursor-pointer hover:text-gray-600" />
+        <Bookmark
+          onClick={bookmarkHandler}
+          className="cursor-pointer hover:text-gray-600"
+        />
       </div>
       <span className="font-medium block mb-2">{postLike} likes</span>
       <p>
@@ -185,7 +208,9 @@ const Post = ({ post }) => {
           onClick={() => {
             dispatch(setSelectedPost(post));
             setOpen(true);
-          }} className="cursor-pointer text-sm text-gray-400">
+          }}
+          className="cursor-pointer text-sm text-gray-400"
+        >
           View all {comment.length} comments
         </span>
       )}

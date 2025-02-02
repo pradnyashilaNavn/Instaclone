@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import { io } from "socket.io-client"
 import { setSocket } from "./redux/socketSlice";
 import { setOnlineUsers } from "./redux/chatSlice";
+import { setLikeNotification } from "./redux/rtnSlice";
 const browserRouter = createBrowserRouter([
   {
     path: "/",
@@ -57,9 +58,12 @@ function App() {
         transports: ['websocket']
       });
       dispatch(setSocket(socketio));
-      // listen to getOnlineUsers event from the server and update the online users in the redux store
+      // listen all the events from the server and update the online users in the redux store
       socketio.on('getOnlineUsers', (onlineUsers)=>{
         dispatch(setOnlineUsers(onlineUsers));
+      });
+      socketio.on('notification', (notification)=>{
+        dispatch(setLikeNotification(notification));
       });
 
       return () => {
