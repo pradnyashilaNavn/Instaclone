@@ -11,7 +11,7 @@ const MainLayout = () => {
       </div>
       <div className="flex flex-grow overflow-y-auto"> {/* to stick sidebar added overflow-y-auto */}
         {/* Main Content with Feed and Right Sidebar */}
-        <div className="flex-grow my-8">
+        <div className="flex-grow">
           <Outlet />
         </div>
       </div>
