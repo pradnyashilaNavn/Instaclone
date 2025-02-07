@@ -6,6 +6,8 @@ import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
 import { AtSign, Heart, MessageCircle } from 'lucide-react';
+import axios from 'axios';
+import { toast } from 'sonner';
 
 const Profile = () => {
   const params = useParams();
@@ -15,10 +17,21 @@ const Profile = () => {
 
   const { userProfile, user } = useSelector(store => store.auth);
   const isLoggedInUserProfile = user?._id === userProfile?._id;
-  const isFollowing = false;
+  const isFollowing = userProfile?.followers.includes(user?._id);
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
+  }
+
+  const followHandler = async () => {
+    try{
+      const res = await axios.post(`http://localhost:8000/api/v1/user/followorunfollow/${userProfile?._id}`,{}, {withCredentials:true});
+      if(res.data.success){
+        toast.success(res.data.message);       
+      }
+    }catch(error){
+      console.log(error);
+    }
   }
 
   const displayedPost = activeTab === 'posts' ? userProfile?.posts : userProfile?.bookmarks;
@@ -49,11 +62,11 @@ const Profile = () => {
                   ) : (
                     isFollowing ? (
                       <>
-                        <Button variant='secondary' className='h-8'>Unfollow</Button>
+                        <Button onClick={followHandler} variant='secondary' className='h-8'>Unfollow</Button>
                         <Button variant='secondary' className='h-8'>Message</Button>
                       </>
                     ) : (
-                      <Button className='bg-[#0095F6] hover:bg-[#3192d2] h-8'>Follow</Button>
+                      <Button onClick={followHandler} className='bg-[#0095F6] hover:bg-[#3192d2] h-8'>Follow</Button>
                     )
                   )
                 }
