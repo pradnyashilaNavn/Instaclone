@@ -68,7 +68,7 @@ const LeftSidebar = () => {
 
   return (
     <div className="flex flex-col items-center justify-between p-4 space-y-4 border-r border-gray-300 h-screen w-full">
-      <div className="flex flex-col w-full">
+      <div className="flex flex-col gap-4 pt-6 w-full">
         <h1 className="text-lg font-semibold mb-4">Logo Instagram</h1>
         <div className="flex flex-col gap-2 w-full">
           {sidebarItems.map((item, index) => (
