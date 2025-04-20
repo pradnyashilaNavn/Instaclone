@@ -1,0 +1,191 @@
+{
+    "info": {
+        "_postman_id": "343ee9cc-cf54-4683-b62f-b24ad0fd4fa1",
+        "name": "Instagram Clone",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "description": ""
+    },
+    "item": [
+        {
+            "name": "Register",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://localhost:8000/api/v1/user/register",
+                    "path": [
+                        "api",
+                        "v1",
+                        "user",
+                        "register"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000"
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n  \"username\":\"pradnya.mernstack\",\n  \"email\":\"pradnya@gmail.com\",\n  \"password\":\"pradnya\"\n}"
+                }
+            }
+        },
+        {
+            "name": "Login",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://localhost:8000/api/v1/user/login",
+                    "path": [
+                        "api",
+                        "v1",
+                        "user",
+                        "login"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000"
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n  \"email\":\"pradnya@gmail.com\",\n  \"password\":\"pradnya\"\n}"
+                }
+            }
+        },
+        {
+            "name": "Logout",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:8000/api/v1/user/logout",
+                    "path": [
+                        "api",
+                        "v1",
+                        "user",
+                        "logout"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000"
+                }
+            }
+        },
+        {
+            "name": "getProfile",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:8000/api/v1/user/6778e682d2ee2c30fefd92a4/profile",
+                    "path": [
+                        "api",
+                        "v1",
+                        "user",
+                        "6778e682d2ee2c30fefd92a4",
+                        "profile"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000"
+                }
+            }
+        },
+        {
+            "name": "editProfile",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://localhost:8000/api/v1/user/profile/edit",
+                    "path": [
+                        "api",
+                        "v1",
+                        "user",
+                        "profile",
+                        "edit"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000"
+                },
+                "body": {
+                    "mode": "formdata",
+                    "formdata": [
+                        {
+                            "key": "bio",
+                            "value": "I am a fullstack developer",
+                            "type": "default"
+                        },
+                        {
+                            "key": "gender",
+                            "value": "female",
+                            "type": "default"
+                        },
+                        {
+                            "key": "profilePicture",
+                            "src": "c:\\Users\\Pradnya\\Downloads\\profile3.png",
+                            "type": "file"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Suggested",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:8000/api/v1/user/suggested",
+                    "path": [
+                        "api",
+                        "v1",
+                        "user",
+                        "suggested"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000"
+                }
+            }
+        },
+        {
+            "name": "followOrUnfollow",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://localhost:8000/api/v1/user/followorunfollow/6779523f77385451de41c5b4",
+                    "path": [
+                        "api",
+                        "v1",
+                        "user",
+                        "followorunfollow",
+                        "6779523f77385451de41c5b4"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000"
+                }
+            }
+        }
+    ]
+}

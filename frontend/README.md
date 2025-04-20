@@ -1,8 +1,21 @@
-# React + Vite
+# Work Done
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Backend Setup
+- Connect with MongoDB Database
+- Create All Models
+- User Controller, Middleware, cloudinary etc
+- Create Post Controller 
+- Create a Message Controller for Chatting 
+- Frontend Setup (React vite, shadcnui)
+- Building Signup/Login Pages
+- Setup React-Router-Dom
+- Building Left Sidebar Page
+- Building Post Page
+- Setup Redux Toolkit for State Management
+- Implement Delete/like/dislike/comment
+- Building Right Sidebar Page
+- Building Profile Page & Follow/Unfollow
+- Building Chat & Message Pages
+- Implement Socket.io for real-time like
+- Implement Protected Routes
+- Deploy App on Render 
